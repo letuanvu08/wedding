@@ -1,0 +1,13 @@
+services:
+  wedding_web:
+    image: node:20.18.1
+    container_name: wedding_web
+    working_dir: /usr/src/app
+    ports:
+      - 80:3000
+    volumes:
+      - ./:/usr/src/app
+    command: >
+      sh -c "(npm install || echo 'npm install failed') &&
+            (npm run build || echo 'npm build failed') &&
+            (npm run start || echo 'npm start failed')"
